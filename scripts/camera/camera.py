@@ -68,17 +68,12 @@ class take_pic(object):
 
             camera.openCamera()
 
-            # camera.AcquisitionMode = 'Continuous'
-            # camera.TriggerMode = 'On'
-           # camera.TriggerSource='Line2'
+            camera.AcquisitionMode = 'Continuous'
+            camera.TriggerMode = 'On'
+            camera.TriggerSource='Line2'
             camera.PixelFormat='Mono8' #Mono8, Mono12, make sure to change np.arrray value np.uint8 to np.uint16
-           # camera.TriggerSelector='AcquisitionStart' #FrameStart, AcquisitionStart
-           # camera.AcquisitionMode='SingleFrame' #Continuous, SingleFrame
-           # camera.SensorShutterMode='GlobalReset'
-    #        camera.TriggerActivation='AnyEdge'
-        #    camera.StrobeSource='LineIn2'
-      #      camera.TriggerDelay=0
-
+            camera.TriggerSelector='FrameStart' #FrameStart, AcquisitionStart
+            camera.TriggerActivation='RisingEdge'
 
             frame = camera.getFrame()
             frame2= camera.getFrame()
@@ -153,7 +148,7 @@ class take_pic(object):
         print "UDP target IP:", UDP_IP
         print "UDP target port:", UDP_PORT
         print "UDP message:", MESSAGE
-      #  print 'size:', sys.getsizeof(MESSAGE)
+      #  print 'size:', sys.getsizeof(MESSAGE)00000000000000000000000000
 
         sock = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
         sock.sendto(MESSAGE, (UDP_IP, UDP_PORT))
